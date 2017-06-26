@@ -1,31 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CatCategoryRow from './CatCategoryRow.jsx';
 
 
 class CatTable extends React.Component{
 
+  GetType(category){
+    const type=this.props.kitties.filter(cat =>{
+      return cat.category ===category;
+  });
 
-  render (){
-    return   <tbody>
-                <tr>
-                <th colSpan="2"> male </th>
-                </tr>
-                <tr>
-                <td>filemon</td>
-                <td>20</td>
-                </tr>
-                <tr>
-                <td>Fidel</td>
-                <td>4</td>
-                </tr>
-                <tr>
-                <th colSpan="2">female</th>
-                </tr>
-                <tr>
-                <td>Yude</td>
-                <td>4</td>
-                </tr>
-            </tbody>
+
+
+    const rows=type.map( cat=>{
+
+      const style={
+        color:this.props.color,
+      };
+      if (!cat.likesKids){
+        style.color="red";
+      }
+      return(
+
+              <tr key={cat.name} style={style}>
+                <td>{cat.name}</td>
+                <td>{cat.age}</td>
+              </tr>
+      )
+    });
+
+return rows;
+  }
+      render(){
+        const resultMale = this.GetType('male');
+        const resultFemale = this.GetType('female');
+    return <tbody>
+                <CatCategoryRow category="male"/>
+                {resultMale}
+                <CatCategoryRow category="female"/>
+                {resultFemale}
+           </tbody>
+
 
 
 }
