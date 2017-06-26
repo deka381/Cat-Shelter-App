@@ -1,7 +1,7 @@
 //Konfiguracja Webpack
 module.exports = {
-    entry: "./js/workshopsPI.jsx",
-    output: { filename: "./js/out.js" },
+    entry: "./js/script.jsx",
+    output: { filename: "./dist/out.js" },
     watch: true,
     module: {
         loaders: [
